@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавлен файл main">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/POST_MACHINE.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE.py" afterDir="false" />
     </list>
@@ -137,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670272283090</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы">
+      <created>1670275425648</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670275425648</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,6 +163,7 @@
     <MESSAGE value="Добавлен requirements.txt" />
     <MESSAGE value="изменено название файла с классом машины поста с main на POST_MACHINE" />
     <MESSAGE value="Добавлен файл main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен файл main" />
+    <MESSAGE value="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы" />
   </component>
 </project>
