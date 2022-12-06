@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py">
+      <change afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POST_MACHINE.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POST_MACHINE.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +31,8 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Python.POST_MACHINE (1)">
-    <configuration name="POST_MACHINE (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test">
+    <configuration name="POST_MACHINE_class" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="post-machine" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -42,7 +44,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/POST_MACHINE.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\1\PycharmProjects\pythonProject\post-machine\POST_MACHINE_class.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -51,7 +53,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="POST_MACHINE" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="POST_MACHINE_class" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="post-machine" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -63,7 +65,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\1\PycharmProjects\pythonProject\post-machine\POST_MACHINE.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\1\PycharmProjects\pythonProject\post-machine\POST_MACHINE_class.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="post-machine" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -95,8 +118,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.POST_MACHINE (1)" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.POST_MACHINE_class" />
       </list>
     </recent_temporary>
   </component>
@@ -144,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670275425648</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py">
+      <created>1670352427835</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670352427835</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +195,7 @@
     <MESSAGE value="изменено название файла с классом машины поста с main на POST_MACHINE" />
     <MESSAGE value="Добавлен файл main" />
     <MESSAGE value="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы" />
+    <MESSAGE value="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py" />
   </component>
 </project>

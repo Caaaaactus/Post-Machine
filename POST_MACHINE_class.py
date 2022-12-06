@@ -76,8 +76,7 @@ class post_machine:
         self.command_list = command_list
         self.first = True
 
-
-    def get_state(self):
+    def _get_state(self):
         '''
         get_state(self)
 
@@ -85,7 +84,7 @@ class post_machine:
         '''
         return self.state
 
-    def get_write_head(self):
+    def _get_write_head(self):
         '''
         get_write_head(self)
 
@@ -93,7 +92,7 @@ class post_machine:
         '''
         return self.write_head
 
-    def get_tape_list(self):
+    def _get_tape_list(self):
         '''
         get_tape_list(self)
 
@@ -101,7 +100,7 @@ class post_machine:
         '''
         return self.tape_list
 
-    def get_command_list(self):
+    def _get_command_list(self):
         '''
         get_command_list(self)
 
@@ -109,7 +108,7 @@ class post_machine:
         '''
         return self.command_list
 
-    def update_state(self, current_command):
+    def _update_state(self, current_command):
         '''
         update_state(self, current_command, state, write_head, tape_list)
             current_command:
@@ -143,54 +142,6 @@ class post_machine:
             return self.state
 
     ##################################################################################################
-    """def task_teg(self, write_head, tape_list, next):
-        tape_list[write_head] = 1
-        return next
-    def task_delete(self, write_head, tape_list, next):
-        tape_list[write_head] = 0
-        return next
-    def task_go_right(self, write_head, tape_list, next):
-        if write_head == len(tape_list) - 1:
-            tape_list += [0] * 33
-        write_head += 1
-        return next
-    def task_go_left(self, write_head, tape_list, next):
-        if write_head == 0:
-            tape_list[:0] = [0] * 33
-            write_head = 33
-        write_head -= 1
-        return next
-    def task_branching(self, write_head, tape_list, next):
-        if tape_list[write_head]:
-            pass
-
-    def post_machine_work(self, current_command, state, write_head, tape_list, command_list, i = 0):
-        '''
-        '''
-        current_command=command_list[i]
-
-        if self.update_state(current_command, state, write_head, tape_list):
-            current = current_command[0]
-            task = current_command[1]
-            next = current_command[2]
-
-            if task == 'v':
-                self.task_teg(write_head, tape_list, next)
-
-            elif task == '-':
-                self.task_delete(write_head, tape_list)
-
-            elif task == '>':
-                self.task_go_right(write_head, tape_list)
-
-            elif task == '<':
-                self.task_go_left(write_head, tape_list)
-
-            elif task[0] == '?':
-                self.task_branching(write_head, tape_list)
-
-        elif not self.update_state(current_command, state, write_head, tape_list):
-            return "Программа окончила свое выполнение"""
 
     def post_machine_working(self, i=0):
 
@@ -207,7 +158,7 @@ class post_machine:
             print('----------------------')
 
         current_command = self.command_list[i]
-        can_work = self.update_state(current_command)
+        can_work = self._update_state(current_command)
 
         task = current_command[1]
 
