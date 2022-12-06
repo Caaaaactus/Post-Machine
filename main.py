@@ -1,21 +1,18 @@
-from POST_MACHINE_class import post_machine
-def main():
-    '''
+import customtkinter
 
-    '''
+class App(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
 
-    t_l = [0] * 32
-    s = True
-    w_h = 16
+        self.title("minimal example app")
+        self.minsize(400, 300)
 
-    c_l = [[1, '<', 2],
-           [2, 'v', 3],
-           [3, '?', [1, 4]],
-           [4, 'stop', 4]]
+        self.button = customtkinter.CTkButton(master=self, command=self.button_callback)
+        self.button.pack(padx=20, pady=20)
 
-    p_m = post_machine(s, w_h, t_l, c_l)
-    p_m.post_machine_working()
-
+    def button_callback(self):
+        print("button pressed")
 
 if __name__ == "__main__":
-    main()
+    app = App()
+    app.mainloop()
