@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="1) Переименован POST_MACHINE.py =&gt; POST_MACHINE_class.py&#10;2) добавлен файл APP_class.py (файл с консольным приложением на CustomTkinter">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.APP_class (1)">
     <configuration name="APP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="post-machine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -44,6 +44,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="C:\Users\1\PycharmProjects\pythonProject\post-machine\APP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="APP_class (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="post-machine" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/APP_class.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,27 +157,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="post-machine" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="post-machine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.APP_class" />
-        <item itemvalue="Python.APP_class" />
+        <item itemvalue="Python.APP_class (1)" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.POST_MACHINE_class" />
+        <item itemvalue="Python.APP_class" />
+        <item itemvalue="Python.APP" />
+        <item itemvalue="Python.APP_class" />
       </list>
     </recent_temporary>
   </component>
@@ -246,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670364451488</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню">
+      <created>1670371035087</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670371035087</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,6 +275,7 @@
     <MESSAGE value="Добавлена документация к методам и классу&#10;Создан метод анализа возможности выполнения программы" />
     <MESSAGE value="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py" />
     <MESSAGE value="1) Переименован POST_MACHINE.py =&gt; POST_MACHINE_class.py&#10;2) добавлен файл APP_class.py (файл с консольным приложением на CustomTkinter" />
-    <option name="LAST_COMMIT_MESSAGE" value="1) Переименован POST_MACHINE.py =&gt; POST_MACHINE_class.py&#10;2) добавлен файл APP_class.py (файл с консольным приложением на CustomTkinter" />
+    <MESSAGE value="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 import customtkinter
-
+from PIL import Image
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -28,7 +28,7 @@ class App(customtkinter.CTk):
                                                        font = ("Segoe UI", 16),
                                                        fg_color="#353535",
                                                        text_color="#888888",
-                                                       command=self.btn_information_met())
+                                                       command=self.btn_information_met)
         self.btn_information.grid(column = 0, row = 0, padx = 20, pady = (20, 10), sticky = "ew")
         self.btn_commands = customtkinter.CTkButton(self.frame_menu,
                                                        text="ОБУЧЕНИЕ",
@@ -37,7 +37,7 @@ class App(customtkinter.CTk):
                                                        font=("Segoe UI", 16),
                                                        fg_color="#353535",
                                                        text_color="#888888",
-                                                       command=self.btn_information_met())
+                                                       command=self.btn_commands_met)
         self.btn_commands.grid(column=0, row=1, padx=20, pady=(0, 10), sticky="ew")
         self.btn_post_mac = customtkinter.CTkButton(self.frame_menu,
                                                     text="МАШИНА ПОСТА",
@@ -46,7 +46,7 @@ class App(customtkinter.CTk):
                                                     font=("Segoe UI", 16),
                                                     fg_color="#353535",
                                                     text_color="#888888",
-                                                    command=self.btn_information_met())
+                                                    command=self.btn_post_mac_met)
         self.btn_post_mac.grid(column=0, row=2, padx=20, pady=(0, 10), sticky="ew")
 
         self.frame_outputConsole = customtkinter.CTkFrame(self, width=870, height=200)
@@ -56,13 +56,49 @@ class App(customtkinter.CTk):
         self.frame_inputConsole.grid(column=1, row=1, padx=15, pady=15, sticky="NSEW")
 
     def btn_information_met(self):
-        pass
+        window_information = customtkinter.CTkToplevel(self)
+        window_information.geometry("400x200")
+
+        label = customtkinter.CTkLabel(window_information, text="Данный проект был сделан")
+        label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
     def btn_commands_met(self):
-        pass
+        window_commands = customtkinter.CTkToplevel(self)
+        window_commands.geometry("400x200")
+
+        label = customtkinter.CTkLabel(window_commands, text="v\n"
+                                                             "-\n"
+                                                             ">\n"
+                                                             "<\n"
+                                                             "? i,j\n")
+        label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
     def btn_post_mac_met(self):
-        pass
+        window_post_mac = customtkinter.CTkToplevel(self)
+        window_post_mac.geometry("900x500")
+        window_post_mac.title("Information about Post Machine")
+        label_text = customtkinter.CTkLabel(window_post_mac,
+                                       text="Маши́на По́ста — абстрактная вычислительная машина, \n"
+                                             "предложенная Эмилем Постом в 1936 году, создана независимо от машины \n"
+                                             "Тьюринга, но сообщение о машине Поста опубликовано на несколько месяцев \n"
+                                             "позднее. Отличается от машины Тьюринга большей простотой, притом обе \n"
+                                             "машины алгоритмически «эквивалентны» и обе разработаны для формализации \n"
+                                             "понятия алгоритма и решения задач об алгоритмической разрешимости, то есть, \n"
+                                             "демонстрации алгоритмического решения задач в форме последовательности команд \n"
+                                             "для машины Поста.",
+                                       font=("Segoe UI", 20),
+                                       compound="center",
+                                       anchor="center"
+                                       )
+        label_text.pack(side="top", fill="both", expand=True, padx=20, pady=20)
+        img_tape = customtkinter.CTkImage(light_image=Image.open("img/tape.png"),
+                                          dark_image=Image.open("img/tape.png"),
+                                          size=(850, 150))
+
+        label_img= customtkinter.CTkLabel(window_post_mac,image = img_tape, text="")
+        label_img.pack(side="bottom", fill="both", expand=True, padx=20, pady=20)
+
 
 app = App()
 app.mainloop()
+
 
 
