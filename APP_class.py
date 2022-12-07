@@ -21,6 +21,14 @@ class App(customtkinter.CTk):
         self.frame_menu = customtkinter.CTkFrame(self, width=300, height=720)
         self.frame_menu.grid(column = 0, row = 0, rowspan = 2, padx = (15, 0), pady = 15, sticky = "NSEW")
 
+        self.label_logo = customtkinter.CTkLabel(self.frame_menu,
+                                            text="_Post \nmachine",
+                                            font=("Segoe UI", 50),
+                                            compound="center",
+                                            anchor="center"
+                                            )
+        self.label_logo.grid(column=0, row=0, padx=20, pady=(20, 50), sticky="ew")
+
         self.btn_information = customtkinter.CTkButton(self.frame_menu,
                                                        text="СПРАВКА О ПРОЕКТЕ",
                                                        width=200,
@@ -29,7 +37,7 @@ class App(customtkinter.CTk):
                                                        fg_color="#353535",
                                                        text_color="#888888",
                                                        command=self.btn_information_met)
-        self.btn_information.grid(column = 0, row = 0, padx = 20, pady = (20, 10), sticky = "ew")
+        self.btn_information.grid(column = 0, row = 2, padx = 20, pady = (20, 10), sticky = "ew")
         self.btn_commands = customtkinter.CTkButton(self.frame_menu,
                                                        text="ОБУЧЕНИЕ",
                                                        width=200,
@@ -38,7 +46,7 @@ class App(customtkinter.CTk):
                                                        fg_color="#353535",
                                                        text_color="#888888",
                                                        command=self.btn_commands_met)
-        self.btn_commands.grid(column=0, row=1, padx=20, pady=(0, 10), sticky="ew")
+        self.btn_commands.grid(column=0, row=3, padx=20, pady=(0, 10), sticky="ew")
         self.btn_post_mac = customtkinter.CTkButton(self.frame_menu,
                                                     text="МАШИНА ПОСТА",
                                                     width=200,
@@ -47,7 +55,10 @@ class App(customtkinter.CTk):
                                                     fg_color="#353535",
                                                     text_color="#888888",
                                                     command=self.btn_post_mac_met)
-        self.btn_post_mac.grid(column=0, row=2, padx=20, pady=(0, 10), sticky="ew")
+        self.btn_post_mac.grid(column=0, row=4, padx=20, pady=(0, 10), sticky="ew")
+
+
+
 
         self.frame_outputConsole = customtkinter.CTkFrame(self, width=870, height=200)
         self.frame_outputConsole.grid(column=1, row=0, padx=15, pady=(15, 0), sticky="NSEW")

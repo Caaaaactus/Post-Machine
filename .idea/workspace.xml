@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Сделано всплывающее окно с инфой о машине Поста">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670371035087</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Сделано всплывающее окно с инфой о машине Поста">
+      <created>1670374766926</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670374766926</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,6 +282,7 @@
     <MESSAGE value="1) прописана логика работы машины в файле POST_MACHINE.py&#10;2) Создана функция main в файле main.py" />
     <MESSAGE value="1) Переименован POST_MACHINE.py =&gt; POST_MACHINE_class.py&#10;2) добавлен файл APP_class.py (файл с консольным приложением на CustomTkinter" />
     <MESSAGE value="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню" />
-    <option name="LAST_COMMIT_MESSAGE" value="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню" />
+    <MESSAGE value="Сделано всплывающее окно с инфой о машине Поста" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделано всплывающее окно с инфой о машине Поста" />
   </component>
 </project>
