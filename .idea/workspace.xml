@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Сделано всплывающее окно с инфой о машине Поста">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавил лого">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
     </list>
@@ -29,6 +29,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/1/PycharmProjects/pythonProject/post-machine"
+  }
+}]]></component>
   <component name="RunManager" selected="Python.APP_class (1)">
     <configuration name="APP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="post-machine" />
@@ -259,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670374766926</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Добавил лого">
+      <created>1670378616103</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1670378616103</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -283,6 +297,7 @@
     <MESSAGE value="1) Переименован POST_MACHINE.py =&gt; POST_MACHINE_class.py&#10;2) добавлен файл APP_class.py (файл с консольным приложением на CustomTkinter" />
     <MESSAGE value="Определено меню в файле APP_class.py&#10;Добавлены нерабочие кнопки под меню" />
     <MESSAGE value="Сделано всплывающее окно с инфой о машине Поста" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделано всплывающее окно с инфой о машине Поста" />
+    <MESSAGE value="Добавил лого" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил лого" />
   </component>
 </project>

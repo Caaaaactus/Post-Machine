@@ -74,14 +74,15 @@ class App(customtkinter.CTk):
         label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
     def btn_commands_met(self):
         window_commands = customtkinter.CTkToplevel(self)
-        window_commands.geometry("400x200")
+        window_commands.geometry("610x1100")
 
-        label = customtkinter.CTkLabel(window_commands, text="v\n"
-                                                             "-\n"
-                                                             ">\n"
-                                                             "<\n"
-                                                             "? i,j\n")
-        label.pack(side="top", fill="both", expand=True, padx=40, pady=40)
+        img_tape = customtkinter.CTkImage(light_image=Image.open("img/edu.png"),
+                                          dark_image=Image.open("img/edu.png"),
+                                          size=(610, 1000))
+
+        label_img = customtkinter.CTkLabel(window_commands, image=img_tape, text="")
+        label_img.pack(side="bottom", fill="both", expand=True)
+
     def btn_post_mac_met(self):
         window_post_mac = customtkinter.CTkToplevel(self)
         window_post_mac.geometry("900x500")
