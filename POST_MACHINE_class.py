@@ -1,4 +1,4 @@
-class post_machine:
+"""class post_machine:
     '''
     Класс машина Поста post_machine
 
@@ -146,16 +146,16 @@ class post_machine:
     def post_machine_working(self, i=0):
 
         if self.first:
-            print('----------------------')
-            print("Начальное состояние ленты")
-            print(self.tape_list)
-            print('----------------------')
+            #print('----------------------')
+            #print("Начальное состояние ленты")
+            self._get_tape_list()
+            #print('----------------------')
             self.first = False
         else:
-            print('----------------------')
-            #print(f"Комманда {i}")
-            print(self.tape_list)
-            print('----------------------')
+            #print('----------------------')
+            #print(self.tape_list)
+            self._get_tape_list()
+            #print('----------------------')
 
         current_command = self.command_list[i]
         can_work = self._update_state(current_command)
@@ -164,7 +164,7 @@ class post_machine:
 
         if can_work:
             if task == 'stop':
-                print("Программа окончила свое выполнение")
+                #print("Программа окончила свое выполнение")
                 return None
             elif task == 'v':
                 self.tape_list[self.write_head] = 1
@@ -188,10 +188,102 @@ class post_machine:
                     i = current_command[2][0] - 1
                 else:
                     i = current_command[2][1] - 1
-            self.post_machine_working(i)
+            return self.tape_list, self.post_machine_working(i)
         else:
-            print("Программа окончила свое выполнение в связи с некоректной командой")
-            return None
+            #print("Программа окончила свое выполнение в связи с некоректной командой")
+            return "Программа окончила свое выполнение в связи с некоректной командой", None"""
+
+
+class post_machine():
+
+    def __int__(self, state, tape_list, write_head):
+        self.state = state
+        self.tape_list = tape_list
+        self.write_head = write_head
+
+    def _can_do_command(self, current_command):
+        if self.tape_list[self.write_head] == 'v' and current_command == 'v':
+            return False
+        elif self.tape_list[self.write_head] == '0' and current_command == '-':
+            return False
+        else:
+            return True
+
+    def tape_extension(self):
+        if self.write_head == len(self.tape_list):
+            self.tape_list += [0]*33
+        elif self.write_head == 0:
+            self.tape_list[:0] = [0] * 33
+
+        return self.tape_list
+    def command_method(self, current_command):
+        try:
+            if current_command == 'v' and self._can_do_command(current_command):
+                self.tape_list[self.write_head] = 'v'
+
+                return self.tape_list
+
+            elif current_command == '-' and self._can_do_command(current_command):
+                self.tape_list[self.write_head] = '0'
+
+                return self.tape_list
+
+            elif current_command == '>':
+                if self.write_head == 0 or self.write_head==len(self.tape_list):
+                    self.tape_list = self.tape_extension()
+                self.write_head+=1
+
+                return self.tape_list
+
+            elif current_command == '<':
+                if self.write_head == 0 or self.write_head==len(self.tape_list):
+                    self.tape_list = self.tape_extension()
+                self.write_head-=1
+
+                return self.tape_list
+            else:
+                self.tape_list = ['!']*len(self.tape_list)
+                return
+        except:
+            pass
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fstate = True
+tape = [0]*32
+wr = 14
+commandlist = [
+    [1, 'v', 2],
+    [2, 'v', 3],
+    [3, 'stop', 3]
+]
+
+pm = post_machine(fstate, wr, tape, commandlist)
+l = pm.post_machine_working(0)
