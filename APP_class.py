@@ -1,6 +1,5 @@
 import customtkinter
-
-
+#from POST_MACHINE_class import post_machine
 from PIL import Image
 
 class App(customtkinter.CTk):
@@ -9,8 +8,8 @@ class App(customtkinter.CTk):
 
         self.title("Post machine simulator")
         self.geometry("1200x720")
-        self.minsize(1200, 720)
-        self.maxsize(1200, 720)
+        self.minsize(1200, 900)
+        self.maxsize(1200, 900)
 
         customtkinter.set_appearance_mode("dark")
         customtkinter.set_default_color_theme("green")
@@ -20,8 +19,8 @@ class App(customtkinter.CTk):
 
 
         #############################################
-        self.frame_menu = customtkinter.CTkFrame(self, width=300, height=720)
-        self.frame_menu.grid(column = 0, row = 0, rowspan = 2, padx = (15, 0), pady = 15, sticky = "NSEW")
+        self.frame_menu = customtkinter.CTkFrame(self)
+        self.frame_menu.grid(column = 0, row = 0, rowspan = 4, padx = (15, 0), pady = 15, sticky = "NSEW")
 
         self.label_logo = customtkinter.CTkLabel(self.frame_menu, text="_Post \nmachine", font=("Segoe UI", 50), compound="center",anchor="center")
         self.label_logo.grid(column=0, row=0, padx=20, pady=(20, 50), sticky="ew")
@@ -34,40 +33,82 @@ class App(customtkinter.CTk):
 
         self.btn_post_mac = customtkinter.CTkButton(self.frame_menu,text="МАШИНА ПОСТА",width=200,height=32,font=("Segoe UI", 16),fg_color="#353535",text_color="#888888",command=self.btn_post_mac_met)
         self.btn_post_mac.grid(column=0, row=4, padx=20, pady=(0, 10), sticky="ew")
+
+        self.btn_ready_command = customtkinter.CTkButton(self.frame_menu, text="ГОТОВЫЕ КОМАНДЫ", width=200, height=32,font=("Segoe UI", 16), fg_color="#353535", text_color="#888888",command=self.btn_post_mac_met)
+        self.btn_ready_command.grid(column=0, row=5, padx=20, pady=(0, 10), sticky="s")
         #############################################
 
 
 
         #############################################
-        self.frame_outputConsole = customtkinter.CTkFrame(self, width=870, height=300)
-        self.frame_outputConsole.grid(column=1, row=0, padx=15, pady=(15, 0), sticky="NSEW")
+        self.frame_inputConsole = customtkinter.CTkFrame(self, height=350)
+        self.frame_inputConsole.grid(column=1, row=0, rowspan=1, padx=15, pady=(15, 0), sticky="NSEW")
+
+        self.headline_command_input_field = customtkinter.CTkTextbox(self.frame_inputConsole, width=50, height=20,font=("Segoe UI", 20), activate_scrollbars=False,fg_color="#2B2B2B")
+        self.headline_command_input_field.grid(row=0, column=0, padx=15, pady=(15, 0), sticky="NSEW")
+        self.headline_command_input_field.insert("0.0", "Ввод программы")
+        self.headline_command_input_field.configure(state="disabled")
+
+        self.command_input_field = customtkinter.CTkTextbox(self.frame_inputConsole, width=300, height=305,font=("Segoe UI", 20), activate_scrollbars=True,fg_color="#2f2f2f")
+        self.command_input_field.grid(row=1, rowspan=3, column=0, padx=15, pady=(0, 20), sticky="NSEW")
+        self.command_input_field.configure(state="disabled")
+
+        self.headline_first_tape_input_field = customtkinter.CTkTextbox(self.frame_inputConsole, width=50, height=20,font=("Segoe UI", 20), activate_scrollbars=False,fg_color="#2B2B2B")
+        self.headline_first_tape_input_field .grid(row=0, column=1, padx=15, pady=(15, 0), sticky="NSEW")
+        self.headline_first_tape_input_field.insert("0.0", "Ввод начального состояния ленты")
+        self.headline_first_tape_input_field.configure(state="disabled")
+        self.first_tape_input_field = customtkinter.CTkTextbox(self.frame_inputConsole, width=400, height=100,font=("Segoe UI", 20), activate_scrollbars=True,fg_color="#2f2f2f")
+        self.first_tape_input_field.grid(row=1, rowspan=2, column=1, padx=15, sticky="n")
 
 
-        self.headline_tape = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20, font=("Segoe UI", 20), activate_scrollbars=False, fg_color="#2B2B2B")
-        self.headline_tape.grid(row=0, column=0,  padx=15, pady=(15, 0), sticky="NSEW")
+
+        self.check_first_tape_input_field = customtkinter.CTkCheckBox(master=self.frame_inputConsole, text="Зафиксировать начальное состояние ленты",onvalue=1, offvalue=0, command=self._fix1)
+        self.check_first_tape_input_field.grid(row=2, column=1, padx=15, pady=55, sticky="nw")
+
+
+        self.check_command_input_field = customtkinter.CTkCheckBox(master=self.frame_inputConsole,text="Зафиксировать программу",onvalue=1, offvalue=0, command=self._fix2)
+        self.check_command_input_field.grid(row=4, column=0, padx=15, pady=(0,20), sticky="nw")
+        self.check_command_input_field.configure(state='disabled')
+
+        self.btn_start = customtkinter.CTkButton(self.frame_inputConsole, text="Начать выполнение", width=300, height=32,font=("Segoe UI", 16), fg_color="#2FA572", text_color="#2B2B2B",command=self.btn_post_mac_met)
+        self.btn_start.grid(column=0, row=5, padx=15, pady=(0, 20), sticky="nw")
+        self.btn_start.configure(state="disabled")
+        #############################################
+
+
+
+        #############################################
+        self.frame_outputConsole = customtkinter.CTkFrame(self)
+        self.frame_outputConsole.grid(column=1, row=1, rowspan=2, padx=15, pady=15, sticky="NSEW")
+
+        self.headline_tape = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20,
+                                                      font=("Segoe UI", 20), activate_scrollbars=False,
+                                                      fg_color="#2B2B2B")
+        self.headline_tape.grid(row=0, column=0, padx=15, pady=(15, 0), sticky="NSEW")
         self.headline_tape.insert("0.0", "Лента машины")
         self.headline_tape.configure(state="disabled")
 
 
-        self.output = customtkinter.CTkTextbox(self.frame_outputConsole,height=50, width=800,  font=("Segoe UI", 20), activate_scrollbars=False)
-        self.output.grid(row=1, column=0, padx=20, pady=(5,5))
+        self.output = customtkinter.CTkTextbox(self.frame_outputConsole, height=50, width=800, font=("Segoe UI", 20), activate_scrollbars=False)
+        self.output.grid(row=1, column=0, padx=20, pady=(5, 5))
 
         self.write_head_line = customtkinter.CTkSlider(self.frame_outputConsole, width=800, progress_color="#4A4D50")
-        self.write_head_line.grid(row=2, column=0, padx=20, pady=(0, 20))
+        self.write_head_line.grid(row=2, column=0, padx=20)
         self.write_head_line.configure(state="disabled")
 
-        self.step = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20), activate_scrollbars=False)
-        self.step.grid(row=3,padx=20, sticky="w")
+        self.headline_step = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20,font=("Segoe UI", 20), activate_scrollbars=False, fg_color="#2B2B2B")
+        self.headline_step.grid(row=3, column=0, padx=15, pady=(15, 0), sticky="NSEW")
+        self.headline_step.insert("0.0", "Команда")
+        self.headline_step.configure(state="disabled")
+        self.step = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20),activate_scrollbars=False)
+        self.step.grid(row=4, padx=20, sticky="w")
 
-        self.fail = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20), activate_scrollbars=False)
-        self.fail.grid(row=4,pady=(10,20))
-        #############################################
-
-
-
-        #############################################
-        self.frame_inputConsole = customtkinter.CTkFrame(self, width=870, height=405)
-        self.frame_inputConsole.grid(column=1, row=1, padx=15, pady=15, sticky="NSEW")
+        self.headline_comp = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20,font=("Segoe UI", 20), activate_scrollbars=False, fg_color="#2B2B2B")
+        self.headline_comp.grid(row=5, column=0, padx=15, pady=(15, 0), sticky="NSEW")
+        self.headline_comp.insert("0.0", "Результат выполнения")
+        self.headline_comp.configure(state="disabled")
+        self.fail = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20),  activate_scrollbars=False)
+        self.fail.grid(row=6, column=0, pady=(0, 20), padx=20, sticky="NSEW")
         #############################################
 
 
@@ -112,8 +153,24 @@ class App(customtkinter.CTk):
 
         label_img= customtkinter.CTkLabel(window_post_mac,image = img_tape, text="")
         label_img.pack(side="bottom", fill="both", expand=True, padx=20, pady=20)
-    def console_output_met(self):
-        pass
+    def _fix1(self):
+        if self.check_first_tape_input_field.get():
+            self.first_tape_input_field.configure(state="disabled")
+            self.command_input_field.configure(state="normal")
+            self.check_command_input_field.configure(state='normal')
+        else:
+            self.first_tape_input_field.configure(state="normal")
+            self.command_input_field.configure(state="disabled")
+            self.check_command_input_field.configure(state='disabled')
+    def _fix2(self):
+        if self.check_command_input_field.get():
+            self.command_input_field.configure(state="disabled")
+            self.btn_start.configure(state="normal")
+        else:
+            self.command_input_field.configure(state="normal")
+            self.btn_start.configure(state="disabled")
+
+
 
 
 app = App()

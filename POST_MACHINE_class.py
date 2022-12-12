@@ -245,7 +245,7 @@ class post_machine():
                 self.tape_list = ['!']*len(self.tape_list)
                 return
         except:
-            pass
+            return [' !']*len(self.tape_list)
 
 
 

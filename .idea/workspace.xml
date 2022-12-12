@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавил метод на кнопку с обучением">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/POST_MACHINE_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
@@ -281,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670667650665</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!">
+      <created>1670799978073</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1670799978073</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -307,6 +314,7 @@
     <MESSAGE value="Сделано всплывающее окно с инфой о машине Поста" />
     <MESSAGE value="Добавил лого" />
     <MESSAGE value="Добавил метод на кнопку с обучением" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил метод на кнопку с обучением" />
+    <MESSAGE value="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!" />
   </component>
 </project>
