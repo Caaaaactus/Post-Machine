@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="Добавлены методы описывающие работу фиксириющих кнопок">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/POST_MACHINE_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
@@ -188,9 +188,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.APP_class (1)" />
+        <item itemvalue="Python.POST_MACHINE_class (1)" />
         <item itemvalue="Python.tm_state_machine" />
         <item itemvalue="Python.turing_machine" />
-        <item itemvalue="Python.POST_MACHINE_class (1)" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -288,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670799978073</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Добавлены методы описывающие работу фиксириющих кнопок">
+      <created>1670871509131</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670871509131</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,6 +322,7 @@
     <MESSAGE value="Добавил лого" />
     <MESSAGE value="Добавил метод на кнопку с обучением" />
     <MESSAGE value="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Заново написан класс машины поста&#10;&#10;!!!!!!переписать размеры всех элементов через row и column!!!!!" />
+    <MESSAGE value="Добавлены методы описывающие работу фиксириющих кнопок" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены методы описывающие работу фиксириющих кнопок" />
   </component>
 </project>

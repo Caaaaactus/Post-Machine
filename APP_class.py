@@ -1,8 +1,8 @@
 import customtkinter
-#from POST_MACHINE_class import post_machine
+from POST_MACHINE_class import post_machine
 from PIL import Image
 
-class App(customtkinter.CTk):
+class App(customtkinter.CTk, post_machine):
     def __init__(self):
         super().__init__()
 
@@ -70,7 +70,7 @@ class App(customtkinter.CTk):
         self.check_command_input_field.grid(row=4, column=0, padx=15, pady=(0,20), sticky="nw")
         self.check_command_input_field.configure(state='disabled')
 
-        self.btn_start = customtkinter.CTkButton(self.frame_inputConsole, text="Начать выполнение", width=300, height=32,font=("Segoe UI", 16), fg_color="#2FA572", text_color="#2B2B2B",command=self.btn_post_mac_met)
+        self.btn_start = customtkinter.CTkButton(self.frame_inputConsole, text="Начать выполнение", width=300, height=32,font=("Segoe UI", 16), fg_color="#2FA572", text_color="#2B2B2B",command=self._start)
         self.btn_start.grid(column=0, row=5, padx=15, pady=(0, 20), sticky="nw")
         self.btn_start.configure(state="disabled")
         #############################################
@@ -91,6 +91,9 @@ class App(customtkinter.CTk):
 
         self.output = customtkinter.CTkTextbox(self.frame_outputConsole, height=50, width=800, font=("Segoe UI", 20), activate_scrollbars=False)
         self.output.grid(row=1, column=0, padx=20, pady=(5, 5))
+        self.output.configure(state="normal")
+        self.output.insert("0.0", '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0')
+        self.output.configure(state="disabled")
 
         self.write_head_line = customtkinter.CTkSlider(self.frame_outputConsole, width=800, progress_color="#4A4D50")
         self.write_head_line.grid(row=2, column=0, padx=20)
@@ -100,15 +103,18 @@ class App(customtkinter.CTk):
         self.headline_step.grid(row=3, column=0, padx=15, pady=(15, 0), sticky="NSEW")
         self.headline_step.insert("0.0", "Команда")
         self.headline_step.configure(state="disabled")
+
         self.step = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20),activate_scrollbars=False)
         self.step.grid(row=4, padx=20, sticky="w")
+        self.step.configure(state="disabled")
 
         self.headline_comp = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20,font=("Segoe UI", 20), activate_scrollbars=False, fg_color="#2B2B2B")
         self.headline_comp.grid(row=5, column=0, padx=15, pady=(15, 0), sticky="NSEW")
         self.headline_comp.insert("0.0", "Результат выполнения")
         self.headline_comp.configure(state="disabled")
-        self.fail = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20),  activate_scrollbars=False)
-        self.fail.grid(row=6, column=0, pady=(0, 20), padx=20, sticky="NSEW")
+        self.rezult = customtkinter.CTkTextbox(self.frame_outputConsole, width=300, height=40, font=("Segoe UI", 20),  activate_scrollbars=False)
+        self.rezult.grid(row=6, column=0, pady=(0, 20), padx=20, sticky="NSEW")
+        self.rezult.configure(state="disabled")
         #############################################
 
 
@@ -169,9 +175,64 @@ class App(customtkinter.CTk):
         else:
             self.command_input_field.configure(state="normal")
             self.btn_start.configure(state="disabled")
+    def _start(self):
 
+        #считываем список команд
+        self.command_list = []
 
+        line_commands_str = self.command_input_field.get('0.0', 'end').split('\n')
 
+        self.command_list+=line_commands_str
+
+        for i in range(len(self.command_list)):
+            self.command_list[i] = self.command_list[i].replace(' ', '')
+        self.command_list = self.command_list[:-1]
+
+        #считываем изначаольное состояние ленты
+        self.first_tape_list = []
+
+        line_first_tape_str = self.first_tape_input_field.get('0.0', 'end').split('\n')
+        line_first_tape_str = line_first_tape_str[:-1]
+        for i in line_first_tape_str[0]:
+            self.first_tape_list.append(int(i))
+        self.first_tape_list += [0]*100
+        self.first_tape_list[:0] = [0]*100
+        #присваиваем индекс пищущей коретке
+        self.wr_head = len(self.first_tape_list)//2
+
+        #инициализируем машину
+        p_m = post_machine(True, self.first_tape_list, self.wr_head)
+
+        #делаем запуск
+        work=True
+        step = 1
+        while work:
+            current_command = self.command_list[step-1][1]
+            self.step.configure(state="normal")
+            self.step.delete("0.0", "end")
+            self.step.insert("0.0", self.command_list[step - 1])
+            self.step.insert("0.1", ': ')
+            self.step.insert("0.2", step)
+            self.step.configure(state="disabled")
+
+            #next_command = self.command_list[next_command-1][2]
+
+            ex=[]
+            ex = p_m.command_method(current_command)
+            print(ex)
+            if ex !="Программа не может окончить свое выполнение в связи с ошибкой":
+                current_tape, self.wr_head = ex[0], ex[1]
+                self.output.configure(state="normal")
+                self.output.insert("0.0", current_tape[self.wr_head - 24:self.wr_head + 25])
+                self.output.configure(state="disabled")
+
+            elif ex=="Программа не может окончить свое выполнение в связи с ошибкой":
+                self.rezult.configure(state="normal")
+                self.rezult.insert("0.0", ex)
+                self.rezult.configure(state="disabled")
+                work = False
+                return None
+            step = self.command_list[step - 1][2]
 
 app = App()
 app.mainloop()

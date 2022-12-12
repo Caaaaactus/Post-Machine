@@ -196,15 +196,15 @@
 
 class post_machine():
 
-    def __int__(self, state, tape_list, write_head):
+    def __init__(self, state, tape_list, write_head):
         self.state = state
         self.tape_list = tape_list
         self.write_head = write_head
 
     def _can_do_command(self, current_command):
-        if self.tape_list[self.write_head] == 'v' and current_command == 'v':
+        if self.tape_list[self.write_head] == 1 and current_command == 'v':
             return False
-        elif self.tape_list[self.write_head] == '0' and current_command == '-':
+        elif self.tape_list[self.write_head] == 0 and current_command == '-':
             return False
         else:
             return True
@@ -217,62 +217,41 @@ class post_machine():
 
         return self.tape_list
     def command_method(self, current_command):
-        try:
-            if current_command == 'v' and self._can_do_command(current_command):
-                self.tape_list[self.write_head] = 'v'
+        if current_command == 'v' and self._can_do_command(current_command):
+            self.tape_list[self.write_head] = 1
 
-                return self.tape_list
+            return self.tape_list, self.write_head
 
-            elif current_command == '-' and self._can_do_command(current_command):
-                self.tape_list[self.write_head] = '0'
+        elif current_command == '-' and self._can_do_command(current_command):
+            self.tape_list[self.write_head] = 0
 
-                return self.tape_list
+            return self.tape_list, self.write_head
 
-            elif current_command == '>':
-                if self.write_head == 0 or self.write_head==len(self.tape_list):
-                    self.tape_list = self.tape_extension()
-                self.write_head+=1
+        elif current_command == '>':
+            if self.write_head == 0 or self.write_head==len(self.tape_list):
+                self.tape_list = self.tape_extension()
+            self.write_head+=1
 
-                return self.tape_list
+            return self.tape_list, self.write_head
 
-            elif current_command == '<':
-                if self.write_head == 0 or self.write_head==len(self.tape_list):
-                    self.tape_list = self.tape_extension()
-                self.write_head-=1
+        elif current_command == '<':
+            if self.write_head == 0 or self.write_head==len(self.tape_list):
+                self.tape_list = self.tape_extension()
+            self.write_head-=1
 
-                return self.tape_list
-            else:
-                self.tape_list = ['!']*len(self.tape_list)
-                return
-        except:
-            return [' !']*len(self.tape_list)
+            return self.tape_list, self.write_head
 
+        elif current_command == 's':
 
+            return "Программа окончила свое выполнение"
 
+        elif not self._can_do_command(current_command):
 
+            return "Программа не может окончить свое выполнение в связи с ошибкой"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        else:
+            self.tape_list = ['!']*len(self.tape_list)
+            return [' &']*len(self.tape_list)
 
 
 
@@ -285,5 +264,3 @@ commandlist = [
     [3, 'stop', 3]
 ]
 
-pm = post_machine(fstate, wr, tape, commandlist)
-l = pm.post_machine_working(0)
