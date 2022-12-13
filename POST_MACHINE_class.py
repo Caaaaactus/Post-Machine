@@ -202,40 +202,40 @@ class post_machine():
         self.write_head = write_head
 
     def _can_do_command(self, current_command):
-        if self.tape_list[self.write_head] == 1 and current_command == 'v':
+        if self.tape_list[self.write_head] == '1' and current_command == 'v':
             return False
-        elif self.tape_list[self.write_head] == 0 and current_command == '-':
+        elif self.tape_list[self.write_head] == '0' and current_command == '-':
             return False
         else:
             return True
 
     def tape_extension(self):
-        if self.write_head == len(self.tape_list):
-            self.tape_list += [0]*33
+        if self.write_head == len(self.tape_list)-1:
+            self.tape_list += ['0']*33
         elif self.write_head == 0:
-            self.tape_list[:0] = [0] * 33
+            self.tape_list[:0] = ['0'] * 33
 
         return self.tape_list
     def command_method(self, current_command):
         if current_command == 'v' and self._can_do_command(current_command):
-            self.tape_list[self.write_head] = 1
+            self.tape_list[self.write_head] = '1'
 
             return self.tape_list, self.write_head
 
         elif current_command == '-' and self._can_do_command(current_command):
-            self.tape_list[self.write_head] = 0
+            self.tape_list[self.write_head] = '0'
 
             return self.tape_list, self.write_head
 
         elif current_command == '>':
-            if self.write_head == 0 or self.write_head==len(self.tape_list):
+            if self.write_head==len(self.tape_list)-1:
                 self.tape_list = self.tape_extension()
             self.write_head+=1
 
             return self.tape_list, self.write_head
 
         elif current_command == '<':
-            if self.write_head == 0 or self.write_head==len(self.tape_list):
+            if self.write_head == 0:
                 self.tape_list = self.tape_extension()
             self.write_head-=1
 
@@ -243,7 +243,13 @@ class post_machine():
 
         elif current_command == 's':
 
-            return "Программа окончила свое выполнение"
+            return "Программа окончила свое выполнение без ошибок"
+
+        elif current_command == '?':
+            if self.tape_list[self.write_head] == '1':
+                return 22
+            if self.tape_list[self.write_head] == '0':
+                return 11
 
         elif not self._can_do_command(current_command):
 
