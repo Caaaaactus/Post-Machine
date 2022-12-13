@@ -202,14 +202,18 @@ class App(customtkinter.CTk, post_machine):
             self.command_input_field.configure(state="normal")
             self.btn_start.configure(state="disabled")
 
-    def _corect_input(self, step1):
+    def _corect_step(self, step1):
         if int(step1)<=0:
             return False
         elif int(step1)>len(self.command_list):
             return False
         else:
             return True
-
+    def _corect_input_tape(self, tape):
+        for i in tape:
+            if i not in '01':
+                return False
+        return True
 
     def _start(self):
 
@@ -224,7 +228,6 @@ class App(customtkinter.CTk, post_machine):
             self.command_list[i] = self.command_list[i].replace(' ', '')
         self.command_list = self.command_list[:-1]
 
-        print(self.command_list)
 
         # считываем изначальное состояние ленты
         self.first_tape_list = []
@@ -247,66 +250,68 @@ class App(customtkinter.CTk, post_machine):
         iter = 0
         maxIter = 200
 
+        if self._corect_input_tape(self.first_tape_list):
+            while work and iter <= maxIter:
 
-        while work and iter <= maxIter:
+                if self._corect_step(step):
 
-            if self._corect_input(step):
+                    current_command = self.command_list[step - 1][0]
 
-                current_command = self.command_list[step - 1][1]
+                    self.step_out.configure(state="normal")
+                    self.step_out.delete("0.0", "end")
+                    self.step_out.insert("0.0", self.command_list[step - 1])
+                    self.step_out.insert("0.1", ': ')
+                    self.step_out.insert("0.2", step)
+                    self.step_out.configure(state="disabled")
 
-                self.step_out.configure(state="normal")
-                self.step_out.delete("0.0", "end")
-                self.step_out.insert("0.0", self.command_list[step - 1])
-                self.step_out.insert("0.1", ': ')
-                self.step_out.insert("0.2", step)
-                self.step_out.configure(state="disabled")
+                    ex = []
+                    ex = p_m.command_method(current_command)
+                    # print(ex)
+                    if ex != "Программа не может окончить свое выполнение в связи с ошибкой" and ex != "Программа окончила свое выполнение без ошибок" and ex != 11 and ex != 22:
+                        current_tape, self.wr_head = ex[0], ex[1]
 
+                        self.output.configure(state="normal")
+                        self.output.delete("0.0", "end")
+                        self.output.insert("0.0", current_tape[self.wr_head - 24:self.wr_head + 25])
+                        self.output.configure(state="disabled")
 
-                ex = []
-                ex = p_m.command_method(current_command)
-                # print(ex)
-                if ex != "Программа не может окончить свое выполнение в связи с ошибкой" and ex != "Программа окончила свое выполнение без ошибок" and ex != 11 and ex != 22:
-                    current_tape, self.wr_head = ex[0], ex[1]
+                        step = int(self.command_list[step - 1][1:])
 
-                    self.output.configure(state="normal")
-                    self.output.delete("0.0", "end")
-                    self.output.insert("0.0", current_tape[self.wr_head - 24:self.wr_head + 25])
-                    self.output.configure(state="disabled")
-
-                    step = int(self.command_list[step - 1][2:])
-
-                elif ex == 11 or ex == 22:
-                    if ex == 11:
-                        step = int(self.command_list[step - 1][2:])
-                    elif ex == 22:
-                        step = int(self.command_list[step - 1][3:])
+                    elif ex == 11 or ex == 22:
+                        if ex == 11:
+                            step = int(self.command_list[step - 1][self.command_list[step - 1].index(',')+1:])
+                        elif ex == 22:
+                            step = int(self.command_list[step - 1][self.command_list[step - 1].index(',')+1:])
 
 
-                elif ex == "Программа не может окончить свое выполнение в связи с ошибкой":
+                    elif ex == "Программа не может окончить свое выполнение в связи с ошибкой":
+                        self.rezult.configure(state="normal")
+                        self.rezult.insert("0.0", "Программа не может окончить свое выполнение в связи с ошибкой\n")
+                        self.rezult.configure(state="disabled")
+                        work = False
+
+                    elif ex == "Программа окончила свое выполнение без ошибок":
+                        self.rezult.configure(state="normal")
+                        self.rezult.insert("0.0", "Программа окончила свое выполнение без ошибок\n")
+                        self.rezult.configure(state="disabled")
+                        work = False
+
+                    iter += 1
+                else:
                     self.rezult.configure(state="normal")
-                    self.rezult.insert("0.0", "Программа не может окончить свое выполнение в связи с ошибкой\n")
+                    self.rezult.insert("0.0","Программа ссылается на несуществующую команду\n")
                     self.rezult.configure(state="disabled")
                     work = False
 
-                elif ex == "Программа окончила свое выполнение без ошибок":
+                if iter > maxIter:
                     self.rezult.configure(state="normal")
-                    self.rezult.insert("0.0", "Программа окончила свое выполнение без ошибок\n")
+                    self.rezult.insert("0.0",
+                                       "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 200 шагов\n")
                     self.rezult.configure(state="disabled")
-                    work = False
-
-                iter += 1
-            else:
-                self.rezult.configure(state="normal")
-                self.rezult.insert("0.0","Программа ссылается на несуществующую команду\n")
-                self.rezult.configure(state="disabled")
-                work = False
-
-        if iter > maxIter:
+        else:
             self.rezult.configure(state="normal")
             self.rezult.insert("0.0",
-                               "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 200 шагов\n")
+                               "Некоректный ввод начального состояния ленты\n")
             self.rezult.configure(state="disabled")
 
 
-app = App()
-app.mainloop()
