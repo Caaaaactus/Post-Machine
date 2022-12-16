@@ -765,7 +765,7 @@ class App(customtkinter.CTk, post_machine):
                     self.rezult.configure(state="normal")
                     self.rezult.insert("0.0",
                                        "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 300 шагов\n"
-                                       "Либо вы складывали/вычитали числа")
+                                       "Либо вы складывали/вычитали числа\n")
                     self.rezult.configure(state="disabled")
         else:
             self.rezult.configure(state="normal")
