@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="остались только примеры программ, документация, тесты">
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="реализованны все кнопки, кроме готовых команд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POST_MACHINE_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main1.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670899442051</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="реализованны все кнопки, кроме готовых команд">
+      <created>1671202640725</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671202640725</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -330,6 +335,7 @@
     <MESSAGE value="Добавлены методы описывающие работу фиксириющих кнопок" />
     <MESSAGE value="проверка" />
     <MESSAGE value="остались только примеры программ, документация, тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="остались только примеры программ, документация, тесты" />
+    <MESSAGE value="реализованны все кнопки, кроме готовых команд" />
+    <option name="LAST_COMMIT_MESSAGE" value="реализованны все кнопки, кроме готовых команд" />
   </component>
 </project>

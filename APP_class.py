@@ -2,7 +2,6 @@ import customtkinter
 from POST_MACHINE_class import post_machine
 from PIL import Image
 
-
 # import time
 
 
@@ -120,6 +119,13 @@ class App(customtkinter.CTk, post_machine):
                                                          font=("Segoe UI", 16), fg_color="#353535",
                                                          text_color="#888888", command=self.btn_ready_com_met)
         self.btn_ready_command.grid(column=0, row=5, padx=20, pady=(0, 10), sticky="s")
+
+        # создаем пятую кнопку, очистки кэша
+
+        self.btn_reset_command = customtkinter.CTkButton(self.frame_menu, text="ОЧИСТИТЬ КЭШ", width=200, height=32,
+                                                         font=("Segoe UI", 16), fg_color="#353535",
+                                                         text_color="#888888", command=self._reset)
+        self.btn_reset_command.grid(column=0, row=6, padx=20, pady=(0, 10), sticky="s")
 
         #############################################
         #############################################
@@ -361,7 +367,7 @@ class App(customtkinter.CTk, post_machine):
                                "------------------------------------------------------------------------------------------------------------------\n"
                                "- Перепроверьте свою программу на ошибки постановки метки в занятую ячейку \nили попытке убрать метку из пустой ячейки\n"
                                "------------------------------------------------------------------------------------------------------------------\n"
-                               "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу \nтак, чтобы она выполнялась не боллее чем за 200 шагов\n"
+                               "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу \nтак, чтобы она выполнялась не боллее чем за 300 шагов\n"
                                "------------------------------------------------------------------------------------------------------------------\n"
                                "- Перепроверьте свою программу на ошибки зацикливания, часто такое происходит\n"
                                "  при использовании ветвлений (?i,j) ИЛИ ЕСЛИ ВЫ ВЫПОЛНЯЕТЕ ПРОГРАММУ ДЛЯ ВЫЧИТАНИЯ\n"
@@ -399,9 +405,12 @@ class App(customtkinter.CTk, post_machine):
                                "   на котором закончила выполнение программа\n"
                                "   С возможными резуультатами вывода и их значением, можете ознакомиться выше\n"
                                "------------------------------------------------------------------------------------------------------------------\n"
+                               "5. ОБЯЗАТЕЛЬНО ПОСЛЕ КАЖДОГО ВЫПОЛНЕНИЯ НАЖИМАЙТЕ КНОПКУ 'ОЧИСТИТЬ КЭШ'\n"
+                               "   выполнения программы, лента, а так же шаг\n"
+                               "   на котором закончила выполнение программа\n"
+                               "   С возможными резуультатами вывода и их значением, можете ознакомиться выше\n"
                                "------------------------------------------------------------------------------------------------------------------\n"
-
-                                )
+                               "------------------------------------------------------------------------------------------------------------------\n")
         edu_text.configure(state="disabled")
 
     def btn_post_mac_met(self):
@@ -459,15 +468,71 @@ class App(customtkinter.CTk, post_machine):
 
         --------------------------------------
         """
-        window_commands = customtkinter.CTkToplevel(self)
-        window_commands.geometry("610x1100")
+        window_programs = customtkinter.CTkToplevel(self)
+        window_programs.title("PMS  готовые команды")
+        window_programs.geometry("950x500")
+        window_programs.maxsize(950, 500)
 
-        img_tape = customtkinter.CTkImage(light_image=Image.open("img/edu.png"),
-                                          dark_image=Image.open("img/edu.png"),
-                                          size=(610, 1000))
+        ready_command_text = customtkinter.CTkTextbox(window_programs, width=400, height=250,
+                                            font=("Segoe UI", 20), activate_scrollbars=False,
+                                            fg_color="#242424")
+        ready_command_text.pack(side="top", fill="both", expand=True, pady=10, padx=10)
 
-        label_img = customtkinter.CTkLabel(window_commands, image=img_tape, text="")
-        label_img.pack(side="bottom", fill="both", expand=True)
+        ready_command_text.insert("0.0",
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "                                                                      Примеры программ                            \n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "Программа прибавления к числу 1\n"
+                        "Начальное состояние ленты 1111\n"
+                        "?2,3\n"
+                        "v4\n"
+                        ">1\n"
+                        "s5\n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "Программа вычитания из числа 1\n"
+                        "Начальное состояние ленты 1111111111\n"
+                        "?2,3\n"
+                        "<4\n"
+                        ">1\n"
+                        "-5\n"
+                        "s6\n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "Сложение двух чисел\n"
+                        "Начальное состояние ленты 11111000011\n"
+                        "?2,3\n"
+                        ">1\n"
+                        "?4,5\n"
+                        "<6\n"
+                        ">3\n"
+                        "-7\n"
+                        "<8\n"
+                        "?9,10\n"
+                        "?11,12\n"
+                        "<8\n"
+                        "<9\n"
+                        ">13\n"
+                        "v14\n"
+                        ">1\n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "Разность двух чисел\n"
+                        "Начальное состояние ленты 1111100011\n"
+                        "?2,3\n"
+                        ">1\n"
+                        "?4,5\n"
+                        "<6\n"
+                        ">3\n"
+                        "-7\n"
+                        "<8\n"
+                        "?9,10\n"
+                        "?11,12\n"
+                        "<8\n"
+                        "<9\n"
+                        "-13\n"
+                        ">1\n"
+                        "------------------------------------------------------------------------------------------------------------------\n"
+                        "------------------------------------------------------------------------------------------------------------------\n")
+        ready_command_text.configure(state="disabled")
     def _fix1(self):
         """
         Метод созданный для уменьшения ошибок ввода пользователем,
@@ -549,6 +614,42 @@ class App(customtkinter.CTk, post_machine):
             if i not in '01':
                 return False
         return True
+    def _reset(self):
+        """
+
+        """
+        self.output.configure(state="normal")
+        self.output.delete('0.0', 'end')
+        self.output.delete('0.0', "end")
+        self.output.edit_reset()
+        self.output.configure(state="disabled")
+
+        self.step_out.configure(state="normal")
+        self.step_out.delete('0.0', 'end')
+        self.step_out.delete('0.0', "end")
+        self.step_out.edit_reset()
+        self.step_out.configure(state="disabled")
+
+        self.rezult.configure(state="normal")
+        self.rezult.delete('0.0', 'end')
+        self.rezult.delete('0.0', "end")
+        self.rezult.edit_reset()
+        self.rezult.configure(state="disabled")
+
+        self.command_input_field.configure(state="normal")
+        self.command_input_field.configure()
+        self.command_input_field.delete('0.0', "end")
+        self.command_input_field.edit_reset()
+        self.command_input_field.configure(state="disabled")
+
+        self.first_tape_input_field.configure(state="normal")
+        self.first_tape_input_field.delete('0.0', 'end')
+        self.first_tape_input_field.delete('0.0', "end")
+        self.first_tape_input_field.edit_reset()
+        self.first_tape_input_field.configure(state="disabled")
+
+        self.check_command_input_field.toggle()
+        self.check_first_tape_input_field.toggle()
 
     def _start(self):
         """
@@ -578,6 +679,8 @@ class App(customtkinter.CTk, post_machine):
 
         --------------------------------------
         """
+
+
         # считываем список команд
         self.command_list = []
 
@@ -609,7 +712,8 @@ class App(customtkinter.CTk, post_machine):
         work = True
         step = 1
         iter = 0
-        maxIter = 200
+        maxIter = 300
+        current_tape = []
 
         if self._corect_input_tape(self.first_tape_list):
             while work and iter <= maxIter:
@@ -645,18 +749,24 @@ class App(customtkinter.CTk, post_machine):
                         elif ex == 22:
                             step = int(self.command_list[step - 1][self.command_list[step - 1].index(',') + 1:])
 
-
-
                     elif ex == "Программа не может окончить свое выполнение в связи с ошибкой":
                         self.rezult.configure(state="normal")
                         self.rezult.insert("0.0", "Программа не может окончить свое выполнение в связи с ошибкой\n")
                         self.rezult.configure(state="disabled")
+
+                        self.output.delete('1.0', "END")
+                        self.output.edit_reset()
+
                         work = False
 
                     elif ex == "Программа окончила свое выполнение без ошибок":
                         self.rezult.configure(state="normal")
                         self.rezult.insert("0.0", "Программа окончила свое выполнение без ошибок\n")
                         self.rezult.configure(state="disabled")
+
+                        self.output.delete('1.0', "END")
+                        self.output.edit_reset()
+
                         work = False
 
                     iter += 1
@@ -664,15 +774,27 @@ class App(customtkinter.CTk, post_machine):
                     self.rezult.configure(state="normal")
                     self.rezult.insert("0.0", "Программа ссылается на несуществующую команду\n")
                     self.rezult.configure(state="disabled")
+
+                    self.output.delete('1.0', "END")
+                    self.output.edit_reset()
+
                     work = False
 
                 if iter > maxIter:
+                    self.output.configure(state="normal")
+                    self.output.delete("0.0", "end")
+                    self.output.insert("0.0", current_tape[current_tape.index('1') - 24:current_tape.index('1') + 25])
+                    self.output.configure(state="disabled")
+
                     self.rezult.configure(state="normal")
                     self.rezult.insert("0.0",
-                                       "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 200 шагов\n")
+                                       "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 300 шагов\n"
+                                       "Либо вы складывали/вычитали числа")
                     self.rezult.configure(state="disabled")
         else:
             self.rezult.configure(state="normal")
             self.rezult.insert("0.0",
                                "Некоректный ввод начального состояния ленты\n")
             self.rezult.configure(state="disabled")
+
+
