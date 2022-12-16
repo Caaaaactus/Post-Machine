@@ -1,207 +1,88 @@
-"""class post_machine:
-    '''
-    Класс машина Поста post_machine
-
-    Методы:
-        ----------------------------------------------------------------------
-        __init__(self, state, write_head, tape_list)
-            state:
-                type bool
-                Переменная показывающая способность или неспособность продолжить работу программы
-            write_head
-                type int
-                Переменная хранящая индекс пишущей головки
-            tape_list
-                type list
-                Список - имитация ленты
-
-        Назначение - автоматически вызываемый при создании каждого экземпляра метод
-        ----------------------------------------------------------------------
-        get_state(self)
-
-        Назначение - метод возврата состояния
-        ----------------------------------------------------------------------
-        get_write_head(self)
-
-        Назначение - метод возврата положения пишущей головки
-        ----------------------------------------------------------------------
-        get_tape_list(self)
-
-        Назначение - метод возврата ленты
-        ----------------------------------------------------------------------
-        get_command_list(self)
-
-        Назначение - метод возврата списка комманд
-        ----------------------------------------------------------------------
-        update_state(self, current_command, state, write_head, tape_list)
-            current_command:
-                type list
-                Список - текущая команда
-            state:
-                type bool
-                Переменная показывающая способность или неспособность продолжить работу программы
-            write_head
-                type int
-                Переменная хранящая индекс пишущей головки
-            tape_list
-                type list
-                Список - эмитация ленты
-
-        Назначение - проверка возможности выполнения команды
-        ----------------------------------------------------------------------
-    '''
-
-    ##################################################################################################
-    def __init__(self, state, write_head, tape_list, command_list):
-        '''
-        __init__(self, state, write_head, tape_list)
-            state:
-                type bool
-                Переменная показывающая способность или неспособность продолжить работу программы
-            write_head
-                type int
-                Переменная хранящая индекс пишущей головки
-            tape_list
-                type list
-                Список - имитация ленты
-            command_list
-                type list
-                Список - список команд
-
-        Назначение - автоматически вызываемый при создании каждого экземпляра метод
-        '''
-        self.state = state
-        self.write_head = write_head
-        self.tape_list = tape_list
-        self.command_list = command_list
-        self.first = True
-
-    def _get_state(self):
-        '''
-        get_state(self)
-
-        Назначение - метод возврата состояния
-        '''
-        return self.state
-
-    def _get_write_head(self):
-        '''
-        get_write_head(self)
-
-        Назначение - метод возврата положения пишущей головки
-        '''
-        return self.write_head
-
-    def _get_tape_list(self):
-        '''
-        get_tape_list(self)
-
-        Назначение - метод возврата ленты
-        '''
-        return self.tape_list
-
-    def _get_command_list(self):
-        '''
-        get_command_list(self)
-
-        Назначение - метод возврата списка комманд
-        '''
-        return self.command_list
-
-    def _update_state(self, current_command):
-        '''
-        update_state(self, current_command, state, write_head, tape_list)
-            current_command:
-                type list
-                Список - текущая команда
-            state:
-                type bool
-                Переменная показывающая способность или неспособность продолжить работу программы
-            write_head
-                type int
-                Переменная хранящая индекс пишущей головки
-            tape_list
-                type list
-                Список - имитация ленты
-
-        Назначение - проверка возможности выполнения команды
-
-        Логика работы:
-        Анализируем возможность выполнить команду пользователя, проверяя ее на возможные ошибки
-        Невозможно выполнить команду если она удовлетворяет следующим критериям
-        1) при постановке метки, т.к. в используемой ячейке УЖЕ содержится метка
-        2) при стирании метки, т.к. в используемой ячейке НЕ содержится метка
-        '''
-        if self.tape_list[self.write_head] == 1 and current_command[1] == 'v':
-            print(f"Команда {current_command[0]} не может быть выполнена, т.к. в используемой ячейке УЖЕ содержится метка")
-            return not self.state
-        elif self.tape_list[self.write_head] == 0 and current_command[1] == '-':
-            print(f"Команда {current_command[0]} не может быть выполнена, т.к. в используемой ячейке НЕ содержится метка")
-            return not self.state
-        else:
-            return self.state
-
-    ##################################################################################################
-
-    def post_machine_working(self, i=0):
-
-        if self.first:
-            #print('----------------------')
-            #print("Начальное состояние ленты")
-            self._get_tape_list()
-            #print('----------------------')
-            self.first = False
-        else:
-            #print('----------------------')
-            #print(self.tape_list)
-            self._get_tape_list()
-            #print('----------------------')
-
-        current_command = self.command_list[i]
-        can_work = self._update_state(current_command)
-
-        task = current_command[1]
-
-        if can_work:
-            if task == 'stop':
-                #print("Программа окончила свое выполнение")
-                return None
-            elif task == 'v':
-                self.tape_list[self.write_head] = 1
-                i = current_command[2] - 1
-            elif task == '-':
-                self.tape_list[self.write_head] = 0
-                i = current_command[2] - 1
-            elif task == '>':
-                if self.write_head == len(self.tape_list) - 1:
-                    self.tape_list += [0] * 32
-                self.write_head += 1
-                i = current_command[2] - 1
-            elif task == '<':
-                if self.write_head == 0:
-                    self.tape_list[:0] = [0] * 32
-                    self.write_head += 32
-                self.write_head -= 1
-                i = current_command[2] - 1
-            elif task == '?':
-                if self.tape_list[self.write_head] == 1:
-                    i = current_command[2][0] - 1
-                else:
-                    i = current_command[2][1] - 1
-            return self.tape_list, self.post_machine_working(i)
-        else:
-            #print("Программа окончила свое выполнение в связи с некоректной командой")
-            return "Программа окончила свое выполнение в связи с некоректной командой", None"""
-
-
 class post_machine():
+    """
+    class post_machine()
+    Назначение класса - моделирование работы машины
+    посредством обработки текущей команды, возврат обновленной ленты
+    и ошибки в случае невозможности выполнения программы
+
+    ----------
+    Methods
+
+    __init__(self, state, tape_list, write_head)
+    Выполняется всякий раз, когда из класса создаётся объект.
+    Используется для инициализации переменных класса.
+    state - состояние машины (True - работает. False - не работает)
+    tape_list - лента машины
+    write_head - индекс пищущей головки на ленте
+
+    get_state(self)
+    Возвращает состояние машины (True - работает. False - не работает)
+
+    get_tape_list(self)
+    Возвращает ленту машины
+
+    get_write_head(self)
+    Возвращает индекс пищущей головки машины
+
+    _can_do_command(self, current_command)
+    Метод определяющий возможность выполнения той или иной команды поступившей машине
+    current_command - текущая команда
+
+    tape_extension(self)
+    Метод удлиняющий ленту в случае необходимости (головка машины дошла до одного из краев)
+
+    command_method(self, current_command)
+    Основной метод класса, моделирующий выполнение команд
+    current_command - текущая команда
+    """
 
     def __init__(self, state, tape_list, write_head):
+        """
+        __init__(self, state, tape_list, write_head)
+        Выполняется всякий раз, когда из класса создаётся объект.
+        Используется для инициализации переменных класса.
+        state - состояние машины (True - работает. False - не работает)
+        tape_list - лента машины
+        write_head - индекс пищущей головки на ленте
+        """
+
         self.state = state
         self.tape_list = tape_list
         self.write_head = write_head
 
+    def get_state(self):
+        """
+        get_state(self)
+        Возвращает состояние машины (True - работает. False - не работает)
+        """
+
+        return self.state
+
+    def get_tape_list(self):
+        """
+        get_tape_list(self)
+        Возвращает ленту машины
+        """
+
+        return self.tape_list
+
+    def get_write_head(self):
+        """
+        get_write_head(self)
+        Возвращает индекс пищущей головки машины
+        """
+
+        return self.write_head
+
     def _can_do_command(self, current_command):
+        """
+        _can_do_command(self, current_command)
+        Метод определяющий возможность выполнения той или иной команды поступившей машине
+        current_command - текущая команда
+        """
+
+        #проверяем возможность выполнения команды согласно правилам работы машины
+        #(невозможно поставить метку в непустое поле, как и убрать метку из пустого)
         if self.tape_list[self.write_head] == '1' and current_command == 'v':
             return False
         elif self.tape_list[self.write_head] == '0' and current_command == '-':
@@ -210,13 +91,28 @@ class post_machine():
             return True
 
     def tape_extension(self):
+        """
+        tape_extension(self)
+        Метод удлиняющий ленту в случае необходимости (головка машины дошла до одного из краев)
+        """
+
+        #расширяем ленту, если доходим до одного из ее концов
         if self.write_head == len(self.tape_list)-1:
             self.tape_list += ['0']*33
         elif self.write_head == 0:
             self.tape_list[:0] = ['0'] * 33
 
         return self.tape_list
+
     def command_method(self, current_command):
+        """
+        command_method(self, current_command)
+        Основной метод класса, моделирующий выполнение команд
+        current_command - текущая команда
+        """
+
+        #инициализируем поступившую программу и возможность ее выполнения,
+        #после чего приступаем к ее реализации
         if current_command == 'v' and self._can_do_command(current_command):
             self.tape_list[self.write_head] = '1'
 
@@ -250,23 +146,11 @@ class post_machine():
                 return 22
             if self.tape_list[self.write_head] == '0':
                 return 11
-
+        #в случае ошибки, возвращаем не новую ленту и индекс головки, а ошибку
         elif not self._can_do_command(current_command):
 
             return "Программа не может окончить свое выполнение в связи с ошибкой"
 
-        else:
+        """else:
             self.tape_list = ['!']*len(self.tape_list)
-            return [' &']*len(self.tape_list)
-
-
-
-fstate = True
-tape = [0]*32
-wr = 14
-commandlist = [
-    [1, 'v', 2],
-    [2, 'v', 3],
-    [3, 'stop', 3]
-]
-
+            return [' &']*len(self.tape_list)"""
