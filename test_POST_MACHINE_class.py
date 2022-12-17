@@ -1,4 +1,4 @@
-import pytest
+#import pytest
 from POST_MACHINE_class import post_machine
 
 

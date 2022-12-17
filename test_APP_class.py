@@ -1,6 +1,6 @@
 import pytest
 from APP_class import App
-import APP_class
+
 def test_corect_input_tape():
     app = App()
     tape1 = ['0']*20

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="добавил тесты">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="готово">
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_APP_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,8 +160,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.pytest in test_APP_class.py" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python tests.pytest in test_POST_MACHINE_class.py" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.POST_MACHINE_class (1)" />
         <item itemvalue="Python.test_POST_MACHINE_class" />
       </list>
@@ -325,7 +323,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671244816525</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="готово">
+      <created>1671272351553</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1671272351553</updated>
+    </task>
+    <task id="LOCAL-00023" summary="готово">
+      <created>1671272430079</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671272430079</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,6 +372,7 @@
     <MESSAGE value="Написана документация" />
     <MESSAGE value="FFFFFFFFFFFFFFFFFFFFFF" />
     <MESSAGE value="добавил тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил тесты" />
+    <MESSAGE value="готово" />
+    <option name="LAST_COMMIT_MESSAGE" value="готово" />
   </component>
 </project>
