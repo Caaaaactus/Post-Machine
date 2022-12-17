@@ -1,6 +1,7 @@
 import pytest
 from APP_class import App
-
+import APP_class
+from mock import Mock, call
 def test_corect_input_tape():
     app = App()
     tape1 = ['0']*20
@@ -43,8 +44,19 @@ def test_corect_step():
     step = 'd'
     assert app._corect_step(step) == False
 
+
 def test_reset():
-    pass
+    app= App()
+    app._reset()
+
+    assert app.output.get('0.0', 'end') == "\n"
+    assert app.step_out.get('0.0', 'end') == "\n"
+    assert app.rezult.get('0.0', 'end') == "\n"
+    assert app.command_input_field.get('0.0', 'end') == "\n"
+    assert app.first_tape_input_field.get('0.0', 'end') == "\n"
+
+    assert app.check_command_input_field.get() == 0
+    assert app.check_first_tape_input_field.get() == 0
 
 
 

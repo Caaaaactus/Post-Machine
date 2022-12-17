@@ -202,7 +202,7 @@ class App(customtkinter.CTk, post_machine):
                                                                       text="Зафиксировать начальное состояние ленты",
                                                                       onvalue=1, offvalue=0, command=self._fix1)
         self.check_first_tape_input_field.grid(row=2, column=1, padx=15, pady=55, sticky="nw")
-
+        print(self.check_first_tape_input_field.get())
         # чекбокс для ввода программы, не нажав на него, вы не сможите перейти к выполнению программы
 
         self.check_command_input_field = customtkinter.CTkCheckBox(master=self.frame_inputConsole,
@@ -424,7 +424,7 @@ class App(customtkinter.CTk, post_machine):
                         "------------------------------------------------------------------------------------------------------------------\n"
                         "------------------------------------------------------------------------------------------------------------------\n")
         edu_text.configure(state="disabled")
-
+        return App()
     def btn_post_mac_met(self):
         """
         Метод создающий окно со справкой о машине Поста,
@@ -538,24 +538,25 @@ class App(customtkinter.CTk, post_machine):
         Метод созданный для уменьшения ошибок ввода пользователем,
         не дающий перейти к следующему шагу, пока не сделан предыдущий
         """
-        if self.check_first_tape_input_field.get():  # действия выполняемые в случае, если чек бокс не был актичен
-            self.first_tape_input_field.configure(state="disabled")
-            self.command_input_field.configure(state="normal")
-            self.check_command_input_field.configure(state='normal')
-        else:  # действия выполняемые в случае, если чек бокс был актичен
+        if not self.check_first_tape_input_field.get():  # действия выполняемые в случае, если чек бокс не был актичен
             self.first_tape_input_field.configure(state="normal")
             self.command_input_field.configure(state="disabled")
             self.check_command_input_field.configure(state='disabled')
+
+        else:  # действия выполняемые в случае, если чек бокс актичен
+            self.first_tape_input_field.configure(state="disabled")
+            self.command_input_field.configure(state="normal")
+            self.check_command_input_field.configure(state='normal')
 
     def _fix2(self):
         """
         Метод созданный для уменьшения ошибок ввода пользователем,
         не дающий перейти к следующему шагу, пока не сделан предыдущий
         """
-        if self.check_command_input_field.get():  # действия выполняемые в случае, если чек бокс не был актичен
+        if self.check_command_input_field.get():  # действия выполняемые в случае, если чек бокс был актичен
             self.command_input_field.configure(state="disabled")
             self.btn_start.configure(state="normal")
-        else:  # действия выполняемые в случае, если чек бокс был активен
+        else:  # действия выполняемые в случае, если чек не бокс был активен
             self.command_input_field.configure(state="normal")
             self.btn_start.configure(state="disabled")
 
@@ -611,19 +612,16 @@ class App(customtkinter.CTk, post_machine):
         """
         self.output.configure(state="normal")
         self.output.delete('0.0', 'end')
-        self.output.delete('0.0', "end")
         self.output.edit_reset()
         self.output.configure(state="disabled")
 
         self.step_out.configure(state="normal")
         self.step_out.delete('0.0', 'end')
-        self.step_out.delete('0.0', "end")
         self.step_out.edit_reset()
         self.step_out.configure(state="disabled")
 
         self.rezult.configure(state="normal")
         self.rezult.delete('0.0', 'end')
-        self.rezult.delete('0.0', "end")
         self.rezult.edit_reset()
         self.rezult.configure(state="disabled")
 
@@ -635,12 +633,16 @@ class App(customtkinter.CTk, post_machine):
 
         self.first_tape_input_field.configure(state="normal")
         self.first_tape_input_field.delete('0.0', 'end')
-        self.first_tape_input_field.delete('0.0', "end")
         self.first_tape_input_field.edit_reset()
         self.first_tape_input_field.configure(state="disabled")
 
-        self.check_command_input_field.toggle()
-        self.check_first_tape_input_field.toggle()
+        if self.check_command_input_field.get()==1:
+            self.check_command_input_field.toggle()
+        if  self.check_first_tape_input_field.get()==1:
+            self.check_first_tape_input_field.toggle()
+
+
+
 
     def _start(self):
         """
@@ -693,7 +695,6 @@ class App(customtkinter.CTk, post_machine):
             # пока состоянием машины True и программа не превысила максимальное количество шагов
             while work and iter <= maxIter:
                 # проверяем корректность номера шага
-                print(self.wr_head)
                 if self._corect_step(step):
 
                     current_command = self.command_list[step - 1][0]  # текущая команда
@@ -731,9 +732,9 @@ class App(customtkinter.CTk, post_machine):
                     elif ex == "Программа не может окончить свое выполнение в связи с ошибкой":
                         self.rezult.configure(state="normal")
                         self.rezult.insert("0.0",
-                                           "------------------------------------------------------------------------------------------------------------------\n"
-                                            "Программа не может окончить свое выполнение в связи с ошибкой\n"
-                                           "------------------------------------------------------------------------------------------------------------------\n")
+                                           "-------------------------------------------------------------------------------------------------\n"
+                                           "Программа не может окончить свое выполнение в связи с ошибкой\n"
+                                           "-------------------------------------------------------------------------------------------------\n")
                         self.rezult.configure(state="disabled")
 
                         self.output.delete('1.0', "END")
@@ -741,14 +742,13 @@ class App(customtkinter.CTk, post_machine):
 
                         work = False
 
-                        return "Программа не может окончить свое выполнение в связи с ошибкой"
 
                     elif ex == "Программа окончила свое выполнение без ошибок":
                         self.rezult.configure(state="normal")
                         self.rezult.insert("0.0",
-                                           "------------------------------------------------------------------------------------------------------------------\n"
+                                           "-------------------------------------------------------------------------------------------------\n"
                                            "Программа окончила свое выполнение без ошибок\n"
-                                           "------------------------------------------------------------------------------------------------------------------\n")
+                                           "-------------------------------------------------------------------------------------------------\n")
                         self.rezult.configure(state="disabled")
 
                         self.output.delete('1.0', "END")
@@ -756,14 +756,13 @@ class App(customtkinter.CTk, post_machine):
 
                         work = False
 
-                        return "Программа окончила свое выполнение без ошибок"
                     iter += 1
                 else:
                     self.rezult.configure(state="normal")
                     self.rezult.insert("0.0",
-                                       "------------------------------------------------------------------------------------------------------------------\n"
+                                       "-------------------------------------------------------------------------------------------------\n"
                                        "Программа ссылается на несуществующую команду\n"
-                                       "------------------------------------------------------------------------------------------------------------------\n")
+                                       "-------------------------------------------------------------------------------------------------\n")
                     self.rezult.configure(state="disabled")
 
                     self.output.delete('1.0', "END")
@@ -771,13 +770,12 @@ class App(customtkinter.CTk, post_machine):
 
                     work = False
 
-                    return "Программа ссылается на несуществующую команду"
-
                 if iter > maxIter:
                     self.output.configure(state="normal")
                     self.output.delete("0.0", "end")
-                    if self.wr_head >= len(current_tape)//2:
-                        self.output.insert("0.0", current_tape[current_tape.index('1') - 24:current_tape.index('1') + 25])
+                    if self.wr_head >= len(current_tape) // 2:
+                        self.output.insert("0.0",
+                                           current_tape[current_tape.index('1') - 24:current_tape.index('1') + 25])
                     else:
                         self.output.insert("0.0", current_tape[0:49])
 
@@ -791,13 +789,11 @@ class App(customtkinter.CTk, post_machine):
                                        "-------------------------------------------------------------------------------------------------\n")
                     self.rezult.configure(state="disabled")
                     work = False
-                    return "Программа зациклилась и превысила допустимое колличество шагов. Перепишите программу так, чтобы она выполнялась не боллее чем за 300 шагов Либо вы складывали/вычитали числа"
         else:
             self.rezult.configure(state="normal")
             self.rezult.insert("0.0",
-                               "------------------------------------------------------------------------------------------------------------------\n"
+                               "-------------------------------------------------------------------------------------------------\n"
                                "Некоректный ввод начального состояния ленты\n"
-                               "------------------------------------------------------------------------------------------------------------------\n")
+                               "-------------------------------------------------------------------------------------------------\n")
             self.rezult.configure(state="disabled")
             work = False
-            return "Некоректный ввод начального состояния ленты"
