@@ -125,6 +125,8 @@ class post_machine():
             return False
         elif self.tape_list[self.write_head] == '0' and current_command == '-':
             return False
+        elif current_command != 'v' and current_command != '-':
+            return False
         else:
             return True
 
@@ -187,7 +189,9 @@ class post_machine():
         elif current_command == '<':
             if self.write_head == 0:
                 self.tape_list = self.tape_extension()
-            self.write_head-=1
+                self.write_head=30
+            else:
+                self.write_head-=1
 
             return self.tape_list, self.write_head
 
@@ -205,3 +209,4 @@ class post_machine():
 
             return "Программа не может окончить свое выполнение в связи с ошибкой"
 
+# 50 строк
