@@ -7,7 +7,7 @@ class post_machine():
 
     -------------------------------------------------------------
     Methods
-        get_state(self)
+    get_state(self)
         Метод возвращающий состояние машины
         -------------------------------------------------------------
         Return
@@ -70,7 +70,7 @@ class post_machine():
         Arguments
         state - состояние машины (True - работает. False - не работает)
         tape_list - лента машины
-        write_head - индекс пищущей головки на ленте
+        write_head - индекс пишущей головки на ленте
         """
 
         self.state = state
@@ -121,6 +121,7 @@ class post_machine():
 
         #проверяем возможность выполнения команды согласно правилам работы машины
         #(невозможно поставить метку в непустое поле, как и убрать метку из пустого)
+        #проверяемрй командой не может быть символ кроме v и -
         if self.tape_list[self.write_head] == '1' and current_command == 'v':
             return False
         elif self.tape_list[self.write_head] == '0' and current_command == '-':
@@ -209,4 +210,3 @@ class post_machine():
 
             return "Программа не может окончить свое выполнение в связи с ошибкой"
 
-# 50 строк

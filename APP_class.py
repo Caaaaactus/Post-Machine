@@ -84,7 +84,7 @@ class App(customtkinter.CTk, post_machine):
         Выполняется всякий раз, когда из класса создаётся объект.
         Создаются все виджеты программы.
         """
-        super().__init__()  # Функция super() позволяет наследовать базовые классыбез необходимости явно ссылаться на базовый класс
+        super().__init__()  # Функция super() позволяет наследовать базовые классы без необходимости явно ссылаться на базовый класс
 
         # инициализируем окно программы, задаем его размер, название, цветовую тему, и сетку размещения элементов
         self.title("Post machine simulator")
@@ -102,7 +102,7 @@ class App(customtkinter.CTk, post_machine):
         # инициализируем первую часть(боковое меню). Создаем и размещаем все элементы в нем
 
         #############################################
-        # фрейм один(реализовано меню)
+        # фрейм один(меню)
         #############################################
 
         # создаём базовый фрейм и размещаем его в общем окне
@@ -155,7 +155,7 @@ class App(customtkinter.CTk, post_machine):
         #############################################
 
         #############################################
-        # фрейм два(реаизованы виджеты ввода)
+        # фрейм два(реализованы виджеты ввода)
         #############################################
 
         # создаем второй фрейм на котором будут находиться все функции ввода.
@@ -202,8 +202,8 @@ class App(customtkinter.CTk, post_machine):
                                                                       text="Зафиксировать начальное состояние ленты",
                                                                       onvalue=1, offvalue=0, command=self._fix1)
         self.check_first_tape_input_field.grid(row=2, column=1, padx=15, pady=55, sticky="nw")
-        print(self.check_first_tape_input_field.get())
-        # чекбокс для ввода программы, не нажав на него, вы не сможите перейти к выполнению программы
+
+        # чекбокс для ввода программы, не нажав на него, вы не сможете перейти к выполнению программы
 
         self.check_command_input_field = customtkinter.CTkCheckBox(master=self.frame_inputConsole,
                                                                    text="Зафиксировать программу", onvalue=1,
@@ -256,7 +256,7 @@ class App(customtkinter.CTk, post_machine):
         self.write_head_line.grid(row=2, column=0, padx=20)
         self.write_head_line.configure(state="disabled")
 
-        # заголовок Команда (показывае на какой команде завершилось выполнение)
+        # заголовок Команда (показывает на какой команде завершилось выполнение)
 
         self.headline_step = customtkinter.CTkTextbox(self.frame_outputConsole, width=50, height=20,
                                                       font=("Segoe UI", 20), activate_scrollbars=False,
@@ -424,7 +424,7 @@ class App(customtkinter.CTk, post_machine):
                         "------------------------------------------------------------------------------------------------------------------\n"
                         "------------------------------------------------------------------------------------------------------------------\n")
         edu_text.configure(state="disabled")
-        return App()
+
     def btn_post_mac_met(self):
         """
         Метод создающий окно со справкой о машине Поста,
@@ -487,7 +487,7 @@ class App(customtkinter.CTk, post_machine):
                                   "?2,3\n"
                                   "v4\n"
                                   ">1\n"
-                                  "s5\n"
+                                  "s4\n"
                                   "------------------------------------------------------------------------------------------------------------------\n"
                                   "Программа вычитания из числа 1\n"
                                   "Начальное состояние ленты 1111111111\n"
@@ -495,10 +495,10 @@ class App(customtkinter.CTk, post_machine):
                                   "<4\n"
                                   ">1\n"
                                   "-5\n"
-                                  "s6\n"
+                                  "s5\n"
                                   "------------------------------------------------------------------------------------------------------------------\n"
                                   "Сложение двух чисел\n"
-                                  "Начальное состояние ленты 11111000011\n"
+                                  "Начальное состояние ленты 111100011\n"
                                   "?2,3\n"
                                   ">1\n"
                                   "?4,5\n"
@@ -515,7 +515,7 @@ class App(customtkinter.CTk, post_machine):
                                   ">1\n"
                                   "------------------------------------------------------------------------------------------------------------------\n"
                                   "Разность двух чисел\n"
-                                  "Начальное состояние ленты 1111100011\n"
+                                  "Начальное состояние ленты 1110011\n"
                                   "?2,3\n"
                                   ">1\n"
                                   "?4,5\n"
@@ -538,12 +538,12 @@ class App(customtkinter.CTk, post_machine):
         Метод созданный для уменьшения ошибок ввода пользователем,
         не дающий перейти к следующему шагу, пока не сделан предыдущий
         """
-        if not self.check_first_tape_input_field.get():  # действия выполняемые в случае, если чек бокс не был актичен
+        if not self.check_first_tape_input_field.get():  # действия выполняемые в случае, если чек бокс не был активен
             self.first_tape_input_field.configure(state="normal")
             self.command_input_field.configure(state="disabled")
             self.check_command_input_field.configure(state='disabled')
 
-        else:  # действия выполняемые в случае, если чек бокс актичен
+        else:  # действия выполняемые в случае, если чек бокс активен
             self.first_tape_input_field.configure(state="disabled")
             self.command_input_field.configure(state="normal")
             self.check_command_input_field.configure(state='normal')
@@ -553,7 +553,7 @@ class App(customtkinter.CTk, post_machine):
         Метод созданный для уменьшения ошибок ввода пользователем,
         не дающий перейти к следующему шагу, пока не сделан предыдущий
         """
-        if self.check_command_input_field.get():  # действия выполняемые в случае, если чек бокс был актичен
+        if self.check_command_input_field.get():  # действия выполняемые в случае, если чек бокс был активен
             self.command_input_field.configure(state="disabled")
             self.btn_start.configure(state="normal")
         else:  # действия выполняемые в случае, если чек не бокс был активен
@@ -641,8 +641,10 @@ class App(customtkinter.CTk, post_machine):
         if  self.check_first_tape_input_field.get()==1:
             self.check_first_tape_input_field.toggle()
 
-
-
+        self.output.configure(state="normal")
+        self.output.insert("0.0",
+                           '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0')
+        self.output.configure(state="disabled")
 
     def _start(self):
         """

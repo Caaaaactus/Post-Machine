@@ -48,7 +48,7 @@ def test_reset():
     app= App()
     app._reset()
 
-    assert app.output.get('0.0', 'end') == "\n"
+    assert app.output.get('0.0', 'end') == "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n"
     assert app.step_out.get('0.0', 'end') == "\n"
     assert app.rezult.get('0.0', 'end') == "\n"
     assert app.command_input_field.get('0.0', 'end') == "\n"
@@ -56,7 +56,6 @@ def test_reset():
 
     assert app.check_command_input_field.get() == 0
     assert app.check_first_tape_input_field.get() == 0
-
 
 
 

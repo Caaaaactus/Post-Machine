@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="готово">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POST_MACHINE_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_APP_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +43,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python tests.pytest in test_APP_class.py">
+  <component name="RunManager" selected="Python.main">
     <configuration name="POST_MACHINE_class (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="post-machine" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,9 +162,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_APP_class.py" />
-        <item itemvalue="Python tests.pytest in test_POST_MACHINE_class.py" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.pytest in test_POST_MACHINE_class.py" />
+        <item itemvalue="Python tests.pytest in test_APP_class.py" />
         <item itemvalue="Python.POST_MACHINE_class (1)" />
         <item itemvalue="Python.test_POST_MACHINE_class" />
       </list>
@@ -337,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671272430079</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="готово">
+      <created>1671272915565</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1671272915565</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
