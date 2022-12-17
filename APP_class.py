@@ -777,7 +777,7 @@ class App(customtkinter.CTk, post_machine):
                     self.output.delete("0.0", "end")
                     if self.wr_head >= len(current_tape) // 2:
                         self.output.insert("0.0",
-                                           current_tape[current_tape.index('1') - 24:current_tape.index('1') + 25])
+                                           current_tape[0:49])
                     else:
                         self.output.insert("0.0", current_tape[0:49])
 

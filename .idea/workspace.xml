@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="готово">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/APP_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POST_MACHINE_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/POST_MACHINE_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_APP_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_APP_class.py" afterDir="false" />
-    </list>
+    <list default="true" id="ea270d8e-617e-4d6a-9ed6-fd4d0f6bdaff" name="Changes" comment="readme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -347,7 +341,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671272915565</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="readme">
+      <created>1671275888986</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1671275888986</updated>
+    </task>
+    <task id="LOCAL-00026" summary="readme">
+      <created>1671276040922</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671276040922</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -383,6 +391,7 @@
     <MESSAGE value="FFFFFFFFFFFFFFFFFFFFFF" />
     <MESSAGE value="добавил тесты" />
     <MESSAGE value="готово" />
-    <option name="LAST_COMMIT_MESSAGE" value="готово" />
+    <MESSAGE value="readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme" />
   </component>
 </project>
